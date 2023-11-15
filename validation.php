@@ -1,16 +1,27 @@
 <?php
     include_once "index.php";
     
-    // URL de l'API que vous souhaitez appeler
-    $api_url = 'https://random-word-api.herokuapp.com/word?length=5#ber=5';
+    $symbol = array("@", "&", "#", "!", "?", "+", "-", "/", "*", "=", ":", "ù", "(", ")");
 
-    // Faire la demande à l'API
-    $response = file_get_contents($api_url);
+    $lenght = $_POST['l-mots'];
+    $nbrmots = $_POST['nbr-mots'];
 
-    // Manipuler la réponse (par exemple, l'afficher)
-    echo $response;
 
-    $relou = array
+        $apiUrl = "https://random-word-api.herokuapp.com/word?length=" . $lenght . "&number=" . $nbrmots; 
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$apiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        $reponse = curl_exec($ch);
+        curl_close($ch);
+        $mdp = json_decode($reponse, true);
+        
+    foreach ($mdp as $most) {
+        echo $most;
+    }
+
+    $mots = $mdp[0];
+
+    echo "<br>" . $mots
 ?>
 </body>
 </html>
