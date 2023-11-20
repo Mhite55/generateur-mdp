@@ -9,19 +9,37 @@
 </head>
 <body>
     <h1 class="mt-5 text-center">Générateur de mots de passe mémorisable</h1>
-    <form action="" class="mt-5 mx-auto col-8" method="POST">
+    <h2 class='text-center'>
+    <?php
+        if(isset($_GET['message']))
+        {
+            echo $_GET['message'];
+        }
+    ?>
+    </h2>
+    <form action="validation.php" class="mt-5 mx-auto col-8" method="POST">
         <label for="l-mots">Longueur des mots (min : 6, max : 10)</label>
-        <input class="form-control" type="number" min="6" max="10" value="6" name="l-mots">
+        <input class="form-control my-2" type="number" min="6" max="10" value="6" name="length">
 
         <label for="nbr-mots">Nombre de mots (min : 4, max : 10)</label>
-        <input class="form-control" type="number" min="4" max="10" value="4" name="nbr-mots">
+        <input class="form-control my-2" type="number" min="4" max="10" value="4" name="number">
 
-        <label for="comp">Complexité</label>
-        <select class="mt-2 mx-auto" name="complexite" id="comp">
-        <option value="comp1">Niveau 1</option>
-        <option value="comp2">Niveau 2</option>
-        <option value="comp3">Niveau 3</option>
+        <label for="complexity class="form-label"">Complexité</label>
+        <select class="my-2 mx-auto form-select" name="complexity" id="comp">
+            <option value selected="0">Niveau 1</option>
+            <option value="1">Niveau 2</option>
+            <option value="2">Niveau 3</option>
         </select>
 
+
         <input class="form-control mt-3 bg-primary bs-light-text" type="submit" value="Generer">
+
+        <h2 class="mt-3 text-center">
+            <?php
+            if(isset($_GET['password']))
+            {
+                echo $_GET['password'];
+            }
+            ?>
+        </h2>
     </form>
